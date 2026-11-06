@@ -1,4 +1,4 @@
-import NoteCard from './NoteCard.jsx'
+import NoteCard from './NoteCard'
 function Notes() {
   return (
     <div className="grid min-h-screen grid-cols-[420px_1fr]">

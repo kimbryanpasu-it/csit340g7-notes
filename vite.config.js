@@ -1,6 +1,6 @@
-import react, { reactCompilerPreset } from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
-import tailwind from '@tailwindcss/vite'
+import tailwindcss from '@tailwindcss/vite'
 
 
 // https://vite.dev/config/

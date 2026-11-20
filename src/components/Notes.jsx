@@ -7,7 +7,7 @@ const startingNotes = [
     title: 'Review map and filter',
     body: 'Redo the TodoMVC steps without looking at the guide.',
   },
-  {
+  { 
     id: 2,
     title: 'Prepare for the quiz',
     body: 'Practice writing one handler for many inputs.',

@@ -12,14 +12,14 @@ function App() {
   })
 
   useEffect(() => {
-    localStorage.setItem(LARGE_TEXT_KEY, String(largeText))
+    localStorage.setItem(LARGE_TEXT_KEY, JSON.stringify(largeText))
   }, [largeText])
 
   return (
     <SettingsContext value={{ largeText, setLargeText }}>
       <div className="bg-[#f5f5f5] font-light text-[#111]">
         <Notes />
-        <Info name="Juan Dela Cruz" />
+        <Info name="Kim Bryan E. Pasu-it" />
       </div>
     </SettingsContext>
   )

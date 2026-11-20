@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import NoteCard from './NoteCard'
 
+
 const startingNotes = [
   {
     id: 1,

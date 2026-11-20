@@ -26,15 +26,17 @@ function Notes() {
   })
   const [searchQuery, setSearchQuery] = useState('')
 
-
-
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes))
   }, [notes])
 
-  // if(searchQuery){
-  //   useState(0)
-  // }
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      localStorage.setItem('draft', JSON.stringify(formData))
+    }, 1000)
+    return () => clearTimeout(id)
+  }, [formData])
 
   function handleChange(e) {
     const { name, value } = e.target

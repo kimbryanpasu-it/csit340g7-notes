@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import NoteCard from './NoteCard'
 
 function Notes() {
@@ -19,8 +19,14 @@ function Notes() {
     title: '',
     body: '',
   })
-
   const [searchQuery, setSearchQuery] = useState('')
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes))
+  }, [notes])
+
+  // if(searchQuery){
+  //   useState(0)
+  // }
 
   function handleChange(e) {
     const { name, value } = e.target

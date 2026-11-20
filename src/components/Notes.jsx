@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import NoteCard from './NoteCard'
 
-
 const startingNotes = [
   {
     id: 1,
@@ -15,20 +14,34 @@ const startingNotes = [
   },
 ]
 
+const emptyForm = { title: '', body: '' }
+
 function Notes() {
   const [notes, setNotes] = useState(() => {
     const saved = localStorage.getItem('notes')
     return saved ? JSON.parse(saved) : startingNotes
   })
 
-  const [formData, setFormData] = useState({title: '', body: '',})
+  const [formData, setFormData] = useState(() => {
+    const savedDraft = localStorage.getItem('draft')
+    if (!savedDraft) return emptyForm
+    try {
+      const parsed = JSON.parse(savedDraft)
+      return {
+        title: typeof parsed.title === 'string' ? parsed.title : '',
+        body: typeof parsed.body === 'string' ? parsed.body : '',
+      }
+    } catch {
+      return emptyForm
+    }
+  })
+
   const [searchQuery, setSearchQuery] = useState('')
   const titleRef = useRef(null)
 
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes))
   }, [notes])
-
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -60,13 +73,13 @@ function Notes() {
     }
 
     setNotes((prevNotes) => [...prevNotes, newNote])
-    setFormData({ title: '', body: '' })
+    setFormData(emptyForm)
     titleRef.current.focus()
   }
 
   const handleDelete = useCallback((id) => {
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id))
-  }, [notes])
+  }, [])
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) =>
